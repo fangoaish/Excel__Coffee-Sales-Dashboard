@@ -1,18 +1,31 @@
-# Excel__Coffee Sales Dashboard
+# Coffee Sales Dashboard
+
 ## Project Overview
-The objective is to explore suitable digital product offerings for a fitness studio in Singapore. This involves conducting a thorough market analysis to strategically position our digital fitness products within the regional market. Through this analysis, we aim to uncover competitor strengths, assess demand trends, and innovate unique digital products and services tailored to meet the needs of potential users.
 
-![image](https://github.com/fangoaish/Python__Digital-Fitness-Product-Strategy-for-Singaporean-Market-Positioning/assets/51399519/05d042e9-2550-4f8d-a798-79b1b20a49af)
+The goal of this project is to develop an interactive dashboard using Microsoft Excel. This dashboard will enable users to quickly identify trends in coffee bean sales and make comparisons across different bean types and countries.
 
-## Business Objectives
-Utilize data from Google Trends and YouTube keyword searches to identify competitor strengths, gauge demand, and develop unique digital fitness products and services tailored to Singaporean users' preferences.
+![Overview of Coffee Sales Dashboard](https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/f09037f6-d907-46ef-91ca-a3cff08fa793)
+
+## Scope
+This project involves end-to-end data analysis in Excel, from data gathering to data cleaning and transformation, all the way to creating meaningful visualizations in the form of a dynamic, interactive dashboard.
+
+## Project Steps
+1. Data Gathering
+2. Data Preparation Using Advanced Formulas and Functions
+3. Exploratory Data Analysis
+4. Data Visualizations And Dashboard Build Using **Pivot Tables**, **Pivot Charts**, **Timeline** and **Slicers**
 
 ## Data Sources
-There were four fundamental datasets leveraged for this analysis:
-- workout.csv
-- three_keywords.csv
-- workout_global.csv
-- geo_three_keywords.csv
+- Coffee Bean Sales
+  - coffeeOrderData.csv 
+
+## Data Gathering
+The data source is a fictitious coffee bean sales dataset provided by Mo Chen. Link [HERE](https://github.com/mochen862/excel-project-coffee-sales). 
+
+The data contains three separate tables:
+- **orders**, **customers** and **products**
+  - The **orders** table is the _fact table_
+  - The **customers** and **products** tables are the _dimension tables_.
 
   
 ## Data Preparation
