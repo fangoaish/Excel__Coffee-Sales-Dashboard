@@ -9,7 +9,7 @@ The goal of this project is to develop an interactive dashboard using Microsoft 
 
 
 ## Scope
-This project involves end-to-end data analysis in Excel, from data gathering to data cleaning and transformation, all the way to creating meaningful visualizations in the form of a dynamic, interactive dashboard.
+This project involves end-to-end data analysis in Excel, from data gathering to data cleaning and transformation, all the way to creating meaningful visualizations in the form of a dynamic and interactive dashboard.
 
 ## Project Steps
 1. Data Gathering
