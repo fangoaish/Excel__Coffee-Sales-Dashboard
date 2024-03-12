@@ -11,7 +11,7 @@ This dashboard will enable users to quickly identify trends in coffee bean sales
 1. Data Gathering
 2. Data Preparation Using Advanced Formulas and Functions
 3. Exploratory Data Analysis
-4. Data Visualizations and Dashboard Build Using **Pivot Tables**, **Pivot Charts**, **Timeline** and **Slicers**
+4. Data Visualizations and Dashboard Build using **Pivot Tables**, **Pivot Charts**, **Timeline** and **Slicers**
 
 ## Data Sources
 The data source is a fictitious coffee bean sales dataset provided by Mo Chen. Link [HERE](https://github.com/mochen862/excel-project-coffee-sales). 
