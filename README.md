@@ -2,14 +2,10 @@
 
 ## Project Overview
 
-The goal of this project is to develop an interactive dashboard using Microsoft Excel. This dashboard will enable users to quickly identify trends in coffee bean sales and make comparisons across different bean types and countries.
-
+This dashboard will enable users to quickly identify trends in coffee bean sales and make comparisons across different bean types and countries. This project involves end-to-end data analysis in Excel, from data gathering to data cleaning and transformation, all the way to creating meaningful visualizations in the form of a dynamic and interactive dashboard.
 
 <img width="1353" alt="Overview of Coffee Sales Dashboard" src="https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/f53cc2bf-279b-4256-b2b9-658a1012cabd">
 
-
-## Scope
-This project involves end-to-end data analysis in Excel, from data gathering to data cleaning and transformation, all the way to creating meaningful visualizations in the form of a dynamic and interactive dashboard.
 
 ## Project Steps
 1. Data Gathering
@@ -18,11 +14,8 @@ This project involves end-to-end data analysis in Excel, from data gathering to 
 4. Data Visualizations And Dashboard Build Using **Pivot Tables**, **Pivot Charts**, **Timeline** and **Slicers**
 
 ## Data Sources
-- Coffee Bean Sales
-  - coffeeOrderData.csv 
-
-## Data Gathering
 The data source is a fictitious coffee bean sales dataset provided by Mo Chen. Link [HERE](https://github.com/mochen862/excel-project-coffee-sales). 
+  - coffeeOrderData.csv
 
 The data contains three separate tables:
 - **orders**, **customers** and **products**
@@ -63,33 +56,21 @@ The data contains three separate tables:
 
 
 ## Exploratory Data Analysis
-Gain comprehensive insights into global workout demand, popular fitness keywords, regional interest splits, and preferred workout types in the Philippines and Singapore. These insights will inform strategic decisions regarding digital product offerings and market positioning for the fitness studio in Singapore.
+The primary objective of the Coffee Sales Dashboard is to provide comprehensive insights into our coffee sales performance, enabling effective decision-making and strategy formulation. The dashboard leverages various data manipulation and lookup techniques to present a holistic view of our sales operations. The following guidelines outline the specific objectives and functionalities of the dashboard:
 
-- Evaluate the global demand for workouts from mid-March 2018 to mid-March 2023.
-- Investigate the top three fitness keywords that garnered the highest interest during different time intervals.
-- Assess the distribution of interest across these keywords in the Philippines and its neighboring countries, including those in the Middle East.
-- Determine the most popular workout types in the Philippines and Singapore.
+- **Data Integration**: Integrate data from orders, customers, and products tables to provide a consolidated view of sales transactions, customer information, and product details.
 
-   
+- **Customer Information** Lookup: Utilize XLOOKUP to efficiently retrieve the full customer name and email address from the customers table and incorporate them into the orders table, enhancing customer-centric analysis and communication.
 
+- **Country Mapping**: Employ XLOOKUP to map the country of the customer from the customers table to the orders table, facilitating regional sales analysis and targeted marketing strategies.
 
-### **Findings**
-Over the past 5 years, the keyword _**'workout'**_ has played the dominant role compared to others in Singapore; whereas, _**'zumba'**_ is the most popular search, followed by the second highest one - _**'workout'**_ in the Philippines.
+- **Product Details Integration**: Utilize dynamic INDEX MATCH formulae to seamlessly integrate coffee type, roast type, size, and unit price values from the products table into the orders table. Ensure correct cell locking to automate formula application across the dataset.
 
-![Yotuube sports keyword searches in the singapore over the past 5 years](https://github.com/fangoaish/Python__Digital-Fitness-Product-Strategy-for-Singaporean-Market-Positioning/assets/51399519/e9f4014b-373e-4da2-87fb-2f2597f0d188)
+- **Sales Calculation**: Calculate sales revenue by multiplying the unit price with the quantity sold, providing insights into revenue generation and product performance.
 
-![Yotuube sports keyword searches in the philippines over the past 5 years](https://github.com/fangoaish/Python__Digital-Fitness-Product-Strategy-for-Singaporean-Market-Positioning/assets/51399519/8153ce46-456e-472f-9f24-d90f218e1e78)
+- **Standardization of Coffee Types**: Utilize multiple IF functions to standardize coffee type and roast type names, ensuring consistency in reporting and analysis.
 
+- **Loyalty Card Status Lookup**: Utilize XLOOKUP to incorporate loyalty card status from the customers table into the orders table, enabling targeted marketing campaigns and customer loyalty analysis.
 
-### **Recommendations**
-- Customize content and campaigns based on local keyword trends.
-- Develop products aligned with specific market interests.
-- Enhance competitiveness by refining offerings based on keyword insights.
-
-
-## Limitations
-- Quality of Datasets: The reliability of the findings and the effectiveness of proposed recommendations heavily rely on the quality and completeness of the datasets provided. Incomplete or inaccurate data could lead to biased analysis and misleading conclusions.
-- Dependency on External Tools: The analysis involves reliance on external tools such as Google Trends and Youtube Keyword Searches. Any limitations or inaccuracies in these tools could affect the accuracy of the analysis results.
-
-
+By adhering to these guidelines, the Coffee Sales Dashboard aims to empower stakeholders with actionable insights, foster informed decision-making, and drive business growth in the competitive coffee market landscape.
 
