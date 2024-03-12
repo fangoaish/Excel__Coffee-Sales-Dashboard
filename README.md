@@ -4,7 +4,9 @@
 
 The goal of this project is to develop an interactive dashboard using Microsoft Excel. This dashboard will enable users to quickly identify trends in coffee bean sales and make comparisons across different bean types and countries.
 
-![Overview of Coffee Sales Dashboard](https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/f09037f6-d907-46ef-91ca-a3cff08fa793)
+
+<img width="1353" alt="Overview of Coffee Sales Dashboard" src="https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/f53cc2bf-279b-4256-b2b9-658a1012cabd">
+
 
 ## Scope
 This project involves end-to-end data analysis in Excel, from data gathering to data cleaning and transformation, all the way to creating meaningful visualizations in the form of a dynamic, interactive dashboard.
@@ -29,51 +31,36 @@ The data contains three separate tables:
 
   
 ## Data Preparation
-- Found in the Datasets folder, all datasets were first inspected and then loaded into various Pandas DataFrames in the appropriate sections of the code.
-- During the inspection, various corrupt and missing aspects of the data were identified.
-- Before loading any file into DataFrames, the code was written to pre-emptively handle all problematic parts in the datasets.
-```ruby
-  def read_file(filepath, plot = True):
-    """
-    Read a CSV file from a given filepath, convert it into a pandas DataFrame,
-    and return a processed DataFrame with three columns: 'week', 'region', and 'interest'. Generate a line plot using Seaborn to visualize the data. This corresponds to the first graphic (time series) returned by trends.google.com. 
-    """
-    file = pd.read_csv(filepath, header=1) #Based upon all the csv files at hand, as our actual column names are on the second row, we're using header=1
-    df = file.set_index('Week').stack().reset_index()
-    df.columns = ['week','region','interest']
-    df['week'] = pd.to_datetime(df['week'])
-    plt.figure(figsize=(8,3))
-    df = df[df['interest']!="<1"]
-    df['interest'] = df['interest'].astype(float)
+- Use **XLOOKUP** to look up the full customer name from the _customers_ table to the _orders_ table
+  
+<img width="725" alt="XLookup - Customer Name" src="https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/c7e1ab19-0966-4890-bbe8-0feadbfabdf7">
 
-    if plot:
-        sns.lineplot(data = df, x= 'week', y= 'interest',hue='region')
-    return df
+- Use **IF** and **XLOOKUP** to look up the email address from the _customers_ table to the _orders_ table
+  
+<img width="1431" alt="IF    XLookup - email address" src="https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/19d3c6ca-148c-47f1-9de4-122bf70cea37">
 
-def read_geo(filepath, multi=False):
-    """
-    Read a CSV file from a given filepath, convert it into a pandas DataFrame,
-    and return a processed DataFrame with two columns: 'country' and 'interest'. Generate a bar plot using Seaborn to visualize the data. This corresponds to the second graphic returned by trends.google.com. Use multi=False if only one keyword is being analyzed, and multi=True if more than one keyword is being analyzed.
-    """
-    file = pd.read_csv(filepath, header=1)
 
-    if not multi:
-        file.columns = ['country', 'interest']
-        plt.figure(figsize=(8,4))
-        colors = sns.color_palette("pastel")
-        sns.barplot(data = file.dropna().iloc[:20,:], y = 'country', x='interest', palette=colors)
+- Use **XLOOKUP** to look up the country of the customer from the _customers_ table to the orders table
+<img width="1087" alt="XLookup Country" src="https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/b364b778-faa5-4a84-86f8-87d6e27134aa">
 
-    if multi:
-        plt.figure(figsize=(10,14))
-        colors = sns.color_palette("pastel")
-        file = file.set_index('Country').stack().reset_index()
-        file.columns = ['country','category','interest']
-        file['interest'] = pd.to_numeric(file['interest'].apply(lambda x: x[:-1]))
-        sns.barplot(data=file.dropna(), y = 'country', x='interest', hue='category', palette=colors)
 
-    # file = file.sort_values(ascending=False,by='interest')
-    return file
-```
+- Use only one dynamic **INDEX MATCH** formula to look up the coffee type, roast type, size and unit price values from the _products_ table to the _orders_ table.
+- Use the correct cell locking (i.e. “$” signs) so that the formula in cell H1 can be automatically filled to the right and to the bottom of the table.
+<img width="1191" alt="Index Match - Coffee Type, Roast Type, Size and Unite Price" src="https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/f26dca47-5673-4756-a8ca-f34d400ac434">
+
+
+- Calculate the sales as the product of **price*quantity**
+<img width="1055" alt="Sales Calculation" src="https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/d02bdd82-8fce-4ba5-95ed-95b04a33ca68">
+
+
+- Use multiple **IF** functions to map the full coffee type and roast type names
+<img width="1184" alt="Multiple IF - Coffee Type" src="https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/c01f3cb0-f322-4e52-b315-1ac66bdcd9ba">
+<img width="1259" alt="Multiple IF - Roast Type" src="https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/b542926e-0ce6-4695-82f5-987a254f71c9">
+
+
+- Use **XLOOKUP** to look up the loyalty card status from the _customers_ table to the _orders_ table
+<img width="1314" alt="'XLookup - Loyalty Card" src="https://github.com/fangoaish/Excel__Coffee-Sales-Dashboard/assets/51399519/c5ceb6cb-f66d-45c6-9084-444797926034">
+
 
 ## Exploratory Data Analysis
 Gain comprehensive insights into global workout demand, popular fitness keywords, regional interest splits, and preferred workout types in the Philippines and Singapore. These insights will inform strategic decisions regarding digital product offerings and market positioning for the fitness studio in Singapore.
@@ -84,75 +71,7 @@ Gain comprehensive insights into global workout demand, popular fitness keywords
 - Determine the most popular workout types in the Philippines and Singapore.
 
    
-### **1. Evaluate the Global Demand for Workouts From Mid-March 2018 to Mid-March 2023**
-- Why do I want to know?
-    - By assessing this demand, we can gain insights into trends, preferences, and potential market opportunities.
-- So what?  
-    - This allows us to adapt our offerings, develop targeted marketing strategies, and allocate resources effectively to meet consumer needs and capitalize on emerging trends.
 
-
-### **Findings:**
-1. Interest in workouts appears to be seasonal.
-2. From mid-March 2018 to mid-March 2023, there is a peak in April 2020. We will investigate the three most popular keywords that generated the highest interest during this peak. 
-
-![Workout worldwide trend](https://github.com/fangoaish/Python__Digital-Fitness-Product-Strategy-for-Singaporean-Market-Positioning/assets/51399519/7275fdab-9ab1-4ad3-9b40-9b39aead1092)
-
-![highest demand for fitness by month and year](https://github.com/fangoaish/Python__Digital-Fitness-Product-Strategy-for-Singaporean-Market-Positioning/assets/51399519/d34f0faf-0c11-417d-8d79-0f20111a066c)
-
-
-### **Recommendations:** 
-- Use the insights gained to develop new fitness products and services tailored to meet the demands of the global market.
-- Create targeted marketing campaigns aimed at regions or demographics with high demand for workouts, maximizing the effectiveness of marketing efforts.
-- Identify regions or countries with growing demand for workouts and explore expansion opportunities to tap into these markets.
-
-
-
-### **2. Which One of the Three Most Popular Keywords Generated the Highest Interest During the Peak of COVID in 2020 and Onwards?**
-- Why do I want to know?
-    - Identifying the top-performing keyword during the peak of COVID in 2020 and onwards is crucial for adapting digital products and marketing strategies to meet shifting consumer behaviors.
-
-- So what?
-    - Use ongoing keyword trend analysis to inform future business strategies and optimize offerings.
-    - Tailor products and services to match the interests associated with the top keyword.
-    - Develop relevant content to attract and retain customers.
-
-
-### **Findings:**
-During the peak of the COVID-19 pandemic in 2020, the most popular keywords globally were: "home workout," with an interest score of 29.0. In 2022 and 2023, the ranking of the most popular keywords globally shifted, with "gym workout" being the most popular keyword, having an interest score of 18.0. Additionally, the United States is the top country with the highest interest in workouts over the past 5 years.
-
-![three keywords trends infos](https://github.com/fangoaish/Python__Digital-Fitness-Product-Strategy-for-Singaporean-Market-Positioning/assets/51399519/7db8f9e8-8524-4438-a836-7f7026e67125)
-
-![three keywords trends graphic](https://github.com/fangoaish/Python__Digital-Fitness-Product-Strategy-for-Singaporean-Market-Positioning/assets/51399519/aa3be17e-c361-4225-a3a8-d81c3b5f7c49)
-
-![Top 20 countries with highest interest in workout](https://github.com/fangoaish/Python__Digital-Fitness-Product-Strategy-for-Singaporean-Market-Positioning/assets/51399519/d278a13f-02d8-43dc-9e90-18e35691f2c7)
-
-
-### **Recommendations**
-- Adapt offerings for gym settings, enhancing the gym workout experience with digital innovations.
-- Offer diverse digital fitness options, catering to both home and gym-based exercises.
-- Monitor trends closely, adjusting strategies promptly to maintain competitiveness.
-
-
-
-### **3. Assess the distribution of interest across these keywords in the Philippines and its neighboring countries, including those in the Middle East**
-
-
-### **Findings:**
-The data shows the distribution of interest across different fitness-related keywords in the Philippines and its neighboring countries, including those in the Middle East. The keywords include "home workout," "gym workout," and "home gym." The top keywords in terms of interest are "home workout" and "gym workout," with "home gym" receiving relatively lower interest.
-
-- Regional Variation: There are variations in keyword interest across countries. For instance, _"home workout"_ appears to be more popular in the **Philippines** and **Malaysia**, while _"gym workout"_ is more prevalent in **India** and the **United Arab Emirates**.
-
-### **Recommendations:**
-Given the varying interests across countries, businesses and fitness-related industries can tailor their marketing strategies accordingly. For example, they can emphasize home workout solutions in countries where it's more popular and focus on gym-related services or products in regions where gym workouts are preferred.
-
-
-
-
-### 4. What are the most popular workout types in the Philippines and Singapore?
-- Why do I want to know?
-    - Understanding YouTube keyword searches for the Philippines and Singapore helps tailor digital fitness products and marketing strategies to engage with local audiences and identify market trends for strategic decisions.
-- So what?
-    - Optimize SEO to improve visibility in search results
 
 ### **Findings**
 Over the past 5 years, the keyword _**'workout'**_ has played the dominant role compared to others in Singapore; whereas, _**'zumba'**_ is the most popular search, followed by the second highest one - _**'workout'**_ in the Philippines.
@@ -168,59 +87,9 @@ Over the past 5 years, the keyword _**'workout'**_ has played the dominant role 
 - Enhance competitiveness by refining offerings based on keyword insights.
 
 
-
-## Challenges
-```ruby
-  def read_file(filepath, plot = True):
-    """
-    Read a CSV file from a given filepath, convert it into a pandas DataFrame,
-    and return a processed DataFrame with three columns: 'week', 'region', and 'interest'. Generate a line plot using Seaborn to visualize the data. This corresponds to the first graphic (time series) returned by trends.google.com. 
-    """
-    file = pd.read_csv(filepath, header=1) #Based upon all the csv files at hand, as our actual column names are on the second row, we're using header=1
-    df = file.set_index('Week').stack().reset_index()
-    df.columns = ['week','region','interest']
-    df['week'] = pd.to_datetime(df['week'])
-    plt.figure(figsize=(8,3))
-    df = df[df['interest']!="<1"]
-    df['interest'] = df['interest'].astype(float)
-
-    if plot:
-        sns.lineplot(data = df, x= 'week', y= 'interest',hue='region')
-    return df
-
-def read_geo(filepath, multi=False):
-    """
-    Read a CSV file from a given filepath, convert it into a pandas DataFrame,
-    and return a processed DataFrame with two columns: 'country' and 'interest'. Generate a bar plot using Seaborn to visualize the data. This corresponds to the second graphic returned by trends.google.com. Use multi=False if only one keyword is being analyzed, and multi=True if more than one keyword is being analyzed.
-    """
-    file = pd.read_csv(filepath, header=1)
-
-    if not multi:
-        file.columns = ['country', 'interest']
-        plt.figure(figsize=(8,4))
-        colors = sns.color_palette("pastel")
-        sns.barplot(data = file.dropna().iloc[:20,:], y = 'country', x='interest', palette=colors)
-
-    if multi:
-        plt.figure(figsize=(10,14))
-        colors = sns.color_palette("pastel")
-        file = file.set_index('Country').stack().reset_index()
-        file.columns = ['country','category','interest']
-        file['interest'] = pd.to_numeric(file['interest'].apply(lambda x: x[:-1]))
-        sns.barplot(data=file.dropna(), y = 'country', x='interest', hue='category', palette=colors)
-
-    # file = file.sort_values(ascending=False,by='interest')
-    return file
-```
-
-
-
 ## Limitations
 - Quality of Datasets: The reliability of the findings and the effectiveness of proposed recommendations heavily rely on the quality and completeness of the datasets provided. Incomplete or inaccurate data could lead to biased analysis and misleading conclusions.
 - Dependency on External Tools: The analysis involves reliance on external tools such as Google Trends and Youtube Keyword Searches. Any limitations or inaccuracies in these tools could affect the accuracy of the analysis results.
 
 
-
-## References
-- [DataCamp](https://www.datacamp.com/)
 
